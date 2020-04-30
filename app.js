@@ -3,13 +3,14 @@
     
     angular.module('NarrowItDownApp', [])
     .controller('NController', NarrowItDownController)
-    .service('MenuSearchService', MenuSearchService)
-    .directive('foundItems',FoundItems);
-
-    function FoundItems() {
+    .directive('testItem', TestItems)
+    .directive('foundItem', FoundItems)
+    .service('MenuSearchService', MenuSearchService);
+ 
+    function TestItems() {
         var ddo = {
      
-          templateURL: 'list.html'
+          templateUrl: 'test.html'
           /*
           scope: {
             items: '<',
@@ -19,6 +20,16 @@
           controllerAs: 'list',
           bindToController: true
           */
+        };
+        return ddo;
+      }
+
+    function FoundItems() {
+        var ddo = {
+          templateUrl: 'list.html',
+        
+       
+         
         };
         return ddo;
       }

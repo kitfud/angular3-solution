@@ -3,16 +3,15 @@
   <head>
     <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
 <body>
   
    <div class="container" ng-controller='NController as list'>
     <h1>Narrow Down Your Chinese Menu Selection!</h1>
-    <test-item></test-item>
     <div class="form-group">
       <input type="text" ng-model="list.currentSearch" placeholder="search term" class="form-control">
     </div>
@@ -21,8 +20,8 @@
     </div>
 
     <!-- found-items should be implemented as a component -->
-      <test-item></test-item>
-  
+      <found-item></found-item>
+ 
 
 
 
