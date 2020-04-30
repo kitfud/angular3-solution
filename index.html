@@ -11,23 +11,20 @@
 <body>
   
    <div class="container" ng-controller='NController as list'>
-    <h1>Narrow Down Your Chinese Menu Selection</h1>
-
+    <h1>Narrow Down Your Chinese Menu Selection!</h1>
+    <test-item></test-item>
     <div class="form-group">
       <input type="text" ng-model="list.currentSearch" placeholder="search term" class="form-control">
-      <span>Searching for:{{list.searchFor}}</span>
     </div>
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click="list.capture()">Narrow It Down For Me!</button>
     </div>
 
-    <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="list.check()">Check Array Val</button>
-    </div>
-
     <!-- found-items should be implemented as a component -->
-    <found-items></found-items>
-  </div>
+      <test-item></test-item>
+  
+
+
 
 </body>
 </html>

@@ -4,24 +4,33 @@
     angular.module('NarrowItDownApp', [])
     .controller('NController', NarrowItDownController)
     .service('MenuSearchService', MenuSearchService)
-    .directive("foundItems",FoundItems)
+    .directive('foundItems',FoundItems);
 
     function FoundItems() {
         var ddo = {
-          template: '{{found}}'
+     
+          templateURL: 'list.html'
+          /*
+          scope: {
+            items: '<',
+            removeItem: '&'
+          },
+          controller: NarrowItDownController,
+          controllerAs: 'list',
+          bindToController: true
+          */
         };
         return ddo;
-      }  
+      }
+    
 
 NarrowItDownController.$inject = ['MenuSearchService','$scope'];
     function NarrowItDownController(MenuSearchService,$scope){
         var list = this;
-        $scope.found = "hello";
-       
-    
+        $scope.found = "";
         list.currentSearch = "";
         list.searchFor= "";
-        list.found = "";
+    
 
         list.capture = function(){
         list.searchFor = list.currentSearch;
@@ -32,14 +41,17 @@ NarrowItDownController.$inject = ['MenuSearchService','$scope'];
     }
 
         list.check = function(){
-            console.log(list.found);
+            console.log($scope.found[0]);
         }
-  
+        list.removeItem = function (itemIndex) {
+            $scope.found.splice(itemIndex, 1);
+          };
   };
 
 MenuSearchService.$inject = ['$http']
 function MenuSearchService($http) {
 var service = this;
+
 
 service.getMenu = function(){
     var response = $http({
@@ -50,7 +62,7 @@ service.getMenu = function(){
 }
 
 service.getMatchedMenuItems = function(serachterm){
-   var foundItems = [];
+   var found = [];
     var promise = service.getMenu();
 
     return promise.then(function (response) {
@@ -60,11 +72,12 @@ service.getMatchedMenuItems = function(serachterm){
         for (var i = 0; i < service.message.menu_items.length; i++) {
             var description = service.message.menu_items[i].description;
             if (description.toLowerCase().indexOf(serachterm) !== -1) {
-             foundItems.push(service.message.menu_items[i])
+             found.push(service.message.menu_items[i])
             }
           }
           
-          return foundItems;
+
+          return found;
        })
        .catch(function (error) {
          console.log("Something went terribly wrong.");
