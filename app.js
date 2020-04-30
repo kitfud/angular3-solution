@@ -3,42 +3,33 @@
     
     angular.module('NarrowItDownApp', [])
     .controller('NController', NarrowItDownController)
-    .directive('testItem', TestItems)
     .directive('foundItem', FoundItems)
     .service('MenuSearchService', MenuSearchService);
- 
-    function TestItems() {
-        var ddo = {
-     
-          templateUrl: 'test.html'
-          /*
-          scope: {
-            items: '<',
-            removeItem: '&'
-          },
-          controller: NarrowItDownController,
-          controllerAs: 'list',
-          bindToController: true
-          */
-        };
-        return ddo;
-      }
 
     function FoundItems() {
         var ddo = {
           templateUrl: 'list.html',
-        
-       
-         
+
+          scope:{
+            foundItems: '<',
+            onRemove: '&'
+          },
+          controller: DirectiveController,
+          controllerAs: 'list',
+          bindToController: true
+
         };
         return ddo;
       }
-    
+      function DirectiveController() {
+        var list = this;
+      
+      }  
 
 NarrowItDownController.$inject = ['MenuSearchService','$scope'];
     function NarrowItDownController(MenuSearchService,$scope){
         var list = this;
-        $scope.found = "";
+        list.found = $scope.found;
         list.currentSearch = "";
         list.searchFor= "";
     
@@ -57,6 +48,9 @@ NarrowItDownController.$inject = ['MenuSearchService','$scope'];
         list.removeItem = function (itemIndex) {
             $scope.found.splice(itemIndex, 1);
           };
+        list.getItems = function(){
+          return $scope.found;
+        }
   };
 
 MenuSearchService.$inject = ['$http']
@@ -82,7 +76,7 @@ service.getMatchedMenuItems = function(serachterm){
 
         for (var i = 0; i < service.message.menu_items.length; i++) {
             var description = service.message.menu_items[i].description;
-            if (description.toLowerCase().indexOf(serachterm) !== -1) {
+            if (description.toLowerCase().indexOf(serachterm.toLowerCase()) !== -1) {
              found.push(service.message.menu_items[i])
             }
           }

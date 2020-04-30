@@ -20,8 +20,9 @@
     </div>
 
     <!-- found-items should be implemented as a component -->
-      <found-item></found-item>
- 
+    <div id="result">
+    <found-item on-remove="list.removeItem(index)" found-items="found"></found-item>
+    </div>
 
 
 

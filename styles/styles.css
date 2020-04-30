@@ -6,11 +6,17 @@ input[type="text"] {
   float: left;
 }
 #result{
- 
-  display:inline-block;
-  position:relative;
-  
- 
+  position: absolute;
+  left: 50px;
+  top: 150px;
+
+}
+b{
+  color:rgba(255, 38, 0, 0.767);
+}
+
+#data{
+display:block;
 }
 .narrow-button {
   float: left;
