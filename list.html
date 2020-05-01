@@ -1,4 +1,5 @@
- <ul id="data" ng-repeat="item in list.foundItems">
+ <ul id="data" ng-repeat="item in list.found">
     <li><b>{{item.name}}</b>: {{item.description}}</li>
     <button ng-click="list.onRemove({index: $index});">Remove Item</button>
  </ul>
+<div style="color:red;">{{list.errorMessage}}</div>

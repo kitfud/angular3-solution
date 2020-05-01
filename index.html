@@ -10,18 +10,18 @@
   </head>
 <body>
   
-   <div class="container" ng-controller='NController as list'>
+   <div class="container" ng-controller='NController as found'>
     <h1>Narrow Down Your Chinese Menu Selection!</h1>
     <div class="form-group">
-      <input type="text" ng-model="list.currentSearch" placeholder="search term" class="form-control">
+      <input type="text" ng-model="found.currentSearch" placeholder="search term" class="form-control">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="list.capture()">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="found.capture()">Narrow It Down For Me!</button>
     </div>
 
     <!-- found-items should be implemented as a component -->
     <div id="result">
-    <found-item on-remove="list.removeItem(index)" found-items="found"></found-item>
+    <found-items on-remove="found.remove(index)" found="found.items" error-message="found.errorMsg"></found-items>
     </div>
 
 
